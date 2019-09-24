@@ -1,0 +1,21 @@
+{
+  "name": "project01",
+  "version": "0.0.1",
+  "description": "Primer proyecto",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit"
+  },
+  "author": "Klausus",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "grunt": "^1.0.4",
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "c3": "^0.7.8",
+    "lodash": "file:node_modules/lodash"
+  }
+}
