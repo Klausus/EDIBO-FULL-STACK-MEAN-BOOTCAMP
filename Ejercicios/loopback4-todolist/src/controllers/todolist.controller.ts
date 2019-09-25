@@ -17,20 +17,20 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {Todolist} from '../models';
-import {TodolistRepository} from '../repositories';
+import { Todolist } from '../models';
+import { TodolistRepository } from '../repositories';
 
 export class TodolistController {
   constructor(
     @repository(TodolistRepository)
-    public todolistRepository : TodolistRepository,
-  ) {}
+    public todolistRepository: TodolistRepository,
+  ) { }
 
-  @post('/todolists', {
+  @post('/todolist/create', {
     responses: {
       '200': {
         description: 'Todolist model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Todolist)}},
+        content: { 'application/json': { schema: getModelSchemaRef(Todolist) } },
       },
     },
   })
@@ -50,11 +50,11 @@ export class TodolistController {
     return this.todolistRepository.create(todolist);
   }
 
-  @get('/todolists/count', {
+  @get('/todolist/count', {
     responses: {
       '200': {
         description: 'Todolist model count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -64,13 +64,13 @@ export class TodolistController {
     return this.todolistRepository.count(where);
   }
 
-  @get('/todolists', {
+  @get('/todolist/find', {
     responses: {
       '200': {
         description: 'Array of Todolist model instances',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(Todolist)},
+            schema: { type: 'array', items: getModelSchemaRef(Todolist) },
           },
         },
       },
@@ -82,11 +82,11 @@ export class TodolistController {
     return this.todolistRepository.find(filter);
   }
 
-  @patch('/todolists', {
+  @patch('/todolist/update', {
     responses: {
       '200': {
         description: 'Todolist PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
+        content: { 'application/json': { schema: CountSchema } },
       },
     },
   })
@@ -94,7 +94,7 @@ export class TodolistController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Todolist, {partial: true}),
+          schema: getModelSchemaRef(Todolist, { partial: true }),
         },
       },
     })
@@ -104,11 +104,11 @@ export class TodolistController {
     return this.todolistRepository.updateAll(todolist, where);
   }
 
-  @get('/todolists/{id}', {
+  @get('/todolist/findById/{id}', {
     responses: {
       '200': {
         description: 'Todolist model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Todolist)}},
+        content: { 'application/json': { schema: getModelSchemaRef(Todolist) } },
       },
     },
   })
@@ -116,7 +116,7 @@ export class TodolistController {
     return this.todolistRepository.findById(id);
   }
 
-  @patch('/todolists/{id}', {
+  @patch('/todolist/updateById/{id}', {
     responses: {
       '204': {
         description: 'Todolist PATCH success',
@@ -128,7 +128,7 @@ export class TodolistController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Todolist, {partial: true}),
+          schema: getModelSchemaRef(Todolist, { partial: true }),
         },
       },
     })
@@ -137,7 +137,7 @@ export class TodolistController {
     await this.todolistRepository.updateById(id, todolist);
   }
 
-  @put('/todolists/{id}', {
+  @put('/todolist/replaceById/{id}', {
     responses: {
       '204': {
         description: 'Todolist PUT success',
@@ -151,7 +151,7 @@ export class TodolistController {
     await this.todolistRepository.replaceById(id, todolist);
   }
 
-  @del('/todolists/{id}', {
+  @del('/todolist/deleteById/{id}', {
     responses: {
       '204': {
         description: 'Todolist DELETE success',
