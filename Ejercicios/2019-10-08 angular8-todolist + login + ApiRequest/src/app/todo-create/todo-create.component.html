@@ -1,0 +1,18 @@
+<div>
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+
+    <div class="container">
+      <mat-form-field>
+        <input matInput formControlName="title" placeholder="Titulo">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput formControlName="desc" rows="6" placeholder="Escribe una descripcion">
+                </textarea>
+      </mat-form-field>
+      <mat-checkbox matInput formControlName="isComplete">
+        <label> Esta Finalizado? </label>
+      </mat-checkbox>
+      <button mat-raised-button color="primary">Guardar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<mat-sidenav-container class="example-container" >
+    
+    <mat-sidenav mode="side" opened>
+        <div>
+            <h1>Listado:</h1>
+            <ul *ngFor="let todo of todoList; let i = index" class="mdc-list">
+                <li (click)="setSelectedTodo(todo, i)" class="mdc-list-item"> {{todo.title}} </li>
+            </ul>
+        </div>
+    </mat-sidenav>  
+
+    <mat-sidenav-content>
+        <!-- <app-todo-detail [todo]="selectedTodo"></app-todo-detail> -->
+        <app-todo-create [inputIndex]="selectedIndex" [input]="selectedTodo" (output)="insertOrUpdateTodo($event)"></app-todo-create>
+    </mat-sidenav-content>
+
+<mat-sidenav-content>

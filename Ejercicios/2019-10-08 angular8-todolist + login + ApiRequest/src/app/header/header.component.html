@@ -1,0 +1,17 @@
+<mat-toolbar color="primary"> <!-- *ngIf="isLoggedIn$ | async asisLoggedIn"> -->
+    <mat-toolbar-row>
+        <span>
+            <img src="/assets/img/angular/angular_whiteTransparent.svg" class="angular-logo">
+            TodoList Example
+        </span>
+        <span class="spacer"> </span>
+        <button  mat-button routerLink="/home" *ngIf="isLoggedIn$ | async">
+            <mat-icon routerLink="/home" class="icon" aria-hidden="false" aria-label="Home">home</mat-icon>
+            Home
+        </button>
+        <button  mat-button routerLink="/todo"   *ngIf="isLoggedIn$ | async">TodoList</button>
+        <button  mat-button routerLink="/about"  *ngIf="isLoggedIn$ | async">About</button>
+        <button  mat-button routerLink="login"   *ngIf="!(isLoggedIn$ | async)">Login</button>
+        <button  mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</button>
+    </mat-toolbar-row>
+</mat-toolbar>
