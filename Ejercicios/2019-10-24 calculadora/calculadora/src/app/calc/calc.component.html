@@ -1,0 +1,54 @@
+<p>total: {{total}}</p>
+<p>previousSimbol: {{previousSimbol}}</p>
+<table border="1">
+  <thead>
+    <tr>
+      <th [colSpan]=4> <button disabled class="buttonScreen">{{history}}</button></th>
+    </tr>
+    <tr>
+      <th [colSpan]=4> <button disabled class="buttonScreen">{{previousSimbol.replace('=','')}} {{numberString}}</button></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <button class="button" (click)="reset()"> CE </button> </td>
+      <td> <button class="button" (click)="resetScreen()"> C </button>  </td>
+      <td> <button class="button" (click)="operacion('%')"> % </button>  </td>
+      <td> <button class="button" (click)="operacion('/')"> / </button>  </td>
+    </tr>
+    <tr>
+      <td> <button class="button" (click)="procesa(7)"> 7 </button>  </td>
+      <td> <button class="button" (click)="procesa(8)"> 8 </button>  </td>
+      <td> <button class="button" (click)="procesa(9)"> 9 </button>  </td>
+      <td> <button class="button" (click)="operacion('*')"> X </button>  </td>
+    </tr>
+    <tr>
+      <td> <button class="button" (click)="procesa(4)"> 4 </button>  </td>
+      <td> <button class="button" (click)="procesa(5)"> 5 </button>  </td>
+      <td> <button class="button" (click)="procesa(6)"> 6 </button>  </td>
+      <td> <button class="button" (click)="operacion('-')"> - </button>  </td>
+    </tr>
+    <tr>
+      <td> <button class="button" (click)="procesa(1)"> 1 </button>  </td>
+      <td> <button class="button" (click)="procesa(2)"> 2 </button>  </td>
+      <td> <button class="button" (click)="procesa(3)"> 3 </button>  </td>
+      <td> <button class="button" (click)="operacion('+')">  + </button>  </td>
+    </tr>
+    <tr>
+      <td>  </td>
+      <td> <button class="button" (click)="procesa(0)">  0 </button>  </td>
+      <td> <button class="button" (click)="decimal()">  . </button>  </td>
+      <td> <button class="button" (click)="igual()">  = </button>  </td>
+    </tr>
+  </tbody>
+  <!--
+    <tfoot>
+      <tr>
+        <th>Columna 1</th>
+        <th>Columna 2</th>
+        <th>Columna 3</th>
+        <th>Columna 4</th>
+      </tr>
+  </tfoot>
+-->
+</table>
