@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
     setTimeout( () => {
       document.getElementById('content-wrapper').style.backgroundColor = ' #FFFFFF';
+      document.title = 'Trello';
     }, 100);
   }
 
