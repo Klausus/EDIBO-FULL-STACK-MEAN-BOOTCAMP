@@ -181,7 +181,6 @@ export class ColumnController {
 
     const filter: Filter<Column> = {};
     filter.where = { boardId: { "like": boardId } };
-    filter.limit = 1;
     console.log(filter);
 
     return this.columnRepository.find(filter);

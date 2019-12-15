@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, ElementRef, ChangeDetectorRef, NgZone, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input, Output, EventEmitter, ElementRef} from '@angular/core';
 import {Card} from './card';
 import {CardService} from './card.service';
 // import {WebSocketService} from '../ws.service';
@@ -9,21 +9,24 @@ import {CardService} from './card.service';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit, OnDestroy {
+
+  // Variables de Entrada y Salida desde/hacia el Padre.
   @Input()  card: Card;
   @Output() cardUpdate: EventEmitter<Card>;
 
-  private   currentTitle: string;
+  // Variables usadas en el template HTML
   protected editingCard: boolean;
-  protected zone: NgZone;
 
+  // Variables privadas
+  private   currentTitle: string;
+
+  // Constructor
   constructor(
     private el: ElementRef,
-    private ref: ChangeDetectorRef,
     private cardService: CardService,
     // private ws: WebSocketService,
   ) {
     this.editingCard = false;
-    this.zone = new NgZone({ enableLongStackTrace: false });
     this.cardUpdate = new EventEmitter();
   }
 
@@ -38,45 +41,66 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // TODO: check lifecycle
     // this.ws.onCardUpdate.unsubscribe();
   }
 
-  blurOnEnter(event) {
-    if ( this.iskeyCode(event, 'Enter', 13) ) {
-      event.target.blur();
+  // Si el evento    es la pulsacion de la tecla X devuelve true.
+  // Si el evento NO es la pulsacion de la tecla X devuelve false.
+  // Se utiliza el parametro "key", "code" y el obsoleto "keyCode" para dar soporte (Chrome,Firefox,IE).
+  iskeyCode(event: any, key: string, keyCode?: number) {
+    if (event.key === key || event.code === key || (keyCode && event.keyCode === keyCode) ) {
+      return true;
     }
-    if ( this.iskeyCode(event, 'Escape', 27) ) {
-      this.card.title = this.currentTitle;
-      this.editingCard = false;
-    }
+    return false;
   }
 
-  editCard() {
+  // Activa la edicion del campo "Card".
+  // Guardas en currentTitle el valor del titulo antes de la edicion.
+  // Pone el foco en el campo de edicion.
+  enableEditCard() {
     this.editingCard  = true;
     this.currentTitle = this.card.title;
     const textArea = this.el.nativeElement.getElementsByTagName('textarea')[0];
     setTimeout( () => { textArea.focus(); }, 0);
   }
 
-  updateCard() {
-    if (!this.card.title || this.card.title.trim() === '') {
-      this.card.title = this.currentTitle;
-    }
-
-    this.cardService.put(this.card).then(
-      (res) => {
-        // this.ws.updateCard(this.card.boardId, this.card);
-    });
-
-    this.editingCard = false;
+  disableEditCard() {
+    this.editingCard  = false;
   }
 
-  iskeyCode(event: any, key: string, keyCode?: number) {
-    if (event.key === key || event.code === key || (keyCode && event.keyCode === keyCode) ) {
-      return true;
+  // Si el evento es la pulsacion de la tecla 'Enter'  => activa el evento blur.
+  // Si el evento es la pulsacion de la tecla 'Escape' => desactiva la edicion.
+  editingCardOnEnter(event) {
+    // If Key is Enter (13) => Activa el evento blur que fuerza el "focusOut" del input.
+    if ( this.iskeyCode(event, 'Enter', 13) ) {
+      event.target.blur();
     }
-    return false;
+    // If Key is Escape (27) => Deshabilita la edicion y evita el cambio del titulo.
+    if ( this.iskeyCode(event, 'Escape', 27) ) {
+      this.card.title = this.currentTitle;
+      this.editingCard = false;
+    }
+  }
+
+  // Evento "Blur" (FocusOut) que se activa con la perdida del focus.
+  // Desactiva la edicion del titulo (de la tarjeta/card).
+  // Actualiza la tarjeta/card.
+  editingCardOnBlur() {
+    this.disableEditCard();
+    this.updateCard();
+  }
+
+  // Actualiza la tarjeta/card en la BD mediante peticion REST.
+  // Si el titulo se borra al editarlo recuperas el titulo anterior.
+  updateCard() {
+    if (this.card.title && this.card.title.trim() !== '') {
+      // Actualiza la tarjeta/card en la BD mendiante una peticion REST
+      this.cardService.put(this.card);
+      this.cardUpdate.emit(this.card);
+    } else {
+      // Si borras el titulo al editarlo => Recuperas el titulo anterior.
+      this.card.title = this.currentTitle;
+    }
   }
 
 }

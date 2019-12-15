@@ -17,25 +17,25 @@ export class BoardService {
   // getAllBoards
   getAll() {
     return this.httpClient.get(this.apiUrl) as
-    Observable<{info: string, data: Board[]}>;
+    Observable<{info: string , data: Board[]}>;
   }
 
   // getBoardByBoardId
   get(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id) as
-    Observable<{info: string, data: Board}>;
+    Observable<{info: string , data: Board}>;
   }
 
   // getColumnsByBoardId
   getColumns(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id + '/columns') as
-    Observable<{info: string, data: Column[]}>;
+    Observable<{info: string , data: Column[]}>;
   }
 
   // getCardsByBoardId
   getCards(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id + '/cards') as
-    Observable<{info: string, data: Card[]}>;
+    Observable<{info: string , data: Card[]}>;
   }
 
   // getBoardAndColumnsAndCardsByBoardId
@@ -47,7 +47,7 @@ export class BoardService {
   post(board: Board) {
     const body = JSON.stringify(board);
     return this.httpClient.post(this.apiUrl, body) as
-    Observable<{info: string, data: Board}>;
+    Observable<{info: string , data: Board}>;
   }
 
   // putBoardById (return void)

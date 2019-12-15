@@ -13,19 +13,19 @@ export class CardService {
   // getAllCards
   getAll() {
     return this.httpClient.get(this.apiUrl) as
-    Observable<{info: string, data: Card[]}>;
+    Observable<{info: string , data: Card[]}>;
   }
 
   // getCardById
   get(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id) as
-    Observable<{info: string, data: Card}>;
+    Observable<{info: string , data: Card}>;
   }
 
   // postCard
   post(card: Card) {
     return this.httpClient.post(this.apiUrl, JSON.stringify(card)) as
-    Observable<{info: string, data: Card}>;
+    Observable<{info: string , data: Card}>;
   }
 
   // putCardByCardId (return void)

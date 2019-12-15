@@ -176,11 +176,6 @@ export class BoardController {
     await this.boardRepository.deleteById(id);
   }
 
-
-
-
-
-
   // @get('/board/{id}/column', {
   //   responses: {
   //     '200': {

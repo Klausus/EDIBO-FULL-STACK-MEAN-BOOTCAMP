@@ -1,0 +1,24 @@
+{
+  "name": "api-express",
+  "version": "0.0.0",
+  "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "~4.13.3",
+    "lodash": "^4.11.1",
+    "mongoose": "^4.2.7",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.42",
+    "ts-node": "1.2.1",
+    "tslint": "^4.0.2",
+    "typescript": "~2.0.3"
+  }
+}

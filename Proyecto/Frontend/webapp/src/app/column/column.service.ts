@@ -14,25 +14,25 @@ export class ColumnService {
   // getAllColumns
   getAll() {
     return this.httpClient.get(this.apiUrl) as
-    Observable<{info: string, data: Column[]}>;
+    Observable<{info: string , data: Column[]}>;
   }
 
   // getColumnByColumnId
   get(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id) as
-    Observable<{info: string, data: Column}>;
+    Observable<{info: string , data: Column}>;
   }
 
   // getCardsByColumnId
   getCards(id: string) {
     return this.httpClient.get(this.apiUrl + '/' + id + '/cards') as
-    Observable<{info: string, data: Card[]}>;
+    Observable<{info: string , data: Card[]}>;
   }
 
   // postColumn
   post(column: Column) {
     return this.httpClient.post(this.apiUrl, JSON.stringify(column)) as
-    Observable<{info: string, data: Column}>;
+    Observable<{info: string , data: Column}>;
   }
 
   // putColumnByColumnId

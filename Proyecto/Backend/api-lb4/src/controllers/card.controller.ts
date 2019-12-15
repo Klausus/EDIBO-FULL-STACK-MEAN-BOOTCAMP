@@ -180,7 +180,6 @@ export class CardController {
 
     const filter: Filter<Card> = {};
     filter.where = { boardId: { "like": boardId } };
-    filter.limit = 1;
     console.log(filter);
 
     return this.cardRepository.find(filter);

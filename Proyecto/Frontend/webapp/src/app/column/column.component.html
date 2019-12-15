@@ -2,29 +2,35 @@
     <div class="column-header">
         <h4 [innerHtml]="column.title"
             [style.display]="editingColumn ?'none' : '' "
-            (click)="editColumn()" >
+            (click)="enableEditColumn()" >
         </h4>
         <input  
             [style.display]="editingColumn ?'' : 'none' "
-            (blur)="updateColumnOnBlur()"
-            (keyup)="addColumnOnEnter($event)"
+            (keyup)="editingColumnOnEnter($event)"
+            (blur)="editingColumnOnBlur()"
             [(ngModel)]="column.title" 
         />
     </div>
     <ul class="card-list" [attr.column-id]="column._id">
-        <li *ngFor="let card of cards"> <!-- | where : { columnId: column._id } | orderBy : 'order' -->
-            <app-card [card]="card"></app-card>
+        <li *ngFor="let card of cards | cardWhere: { columnId: column._id } | cardOrder: 'ASC'">
+            <app-card 
+                [card]="card"
+                (cardUpdate)="cardUpdate($event)"
+            ></app-card>
         </li>
     </ul>
-    <div class="add-card" (click)="enableAddCard()" >
-        <span [style.display]="addingCard ? 'none' : ''" >
+    <div class="add-card" (click)="enableAddCard()">
+        <span 
+            [style.display]="addingCard ? 'none' : ''" 
+            (click)="enableAddCard()" >
             Add a card...
         </span>
         <input  
-        [style.display]="addingCard ? '' : 'none' "
-        [attr.autofocus]="addingCard"
-        (keyup)="addCardOnEnter($event)"
-        (blur)="addCardOnBlur()"
-        [(ngModel)]="addCardText" />
+            [style.display]="addingCard ? '' : 'none' "
+            [attr.autofocus]="addingCard"
+            (keyup)="addCardOnEnter($event)"
+            (blur)="addCardOnBlur()"
+            [(ngModel)]="addCardText" 
+        />
     </div>
 </div>

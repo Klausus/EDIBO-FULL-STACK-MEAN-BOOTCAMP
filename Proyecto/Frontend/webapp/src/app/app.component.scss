@@ -1,36 +1,3 @@
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-  }
-  
-  
-  nav {
-    background-color: #0067A3;
-    padding: 5px;
-    height: 30px;
-  }
-  
-  nav a {
-    float: left;  
-    color: white; 
-  }
-  
-  nav a.btn {
-    background-color:#4590BC;
-    width: 80px;
-  }
-  
-  nav a.logo{
-    line-height: 30px;
-    font-weight: bold;
-    color:#7FB2D1;
-    width: calc(100% - 200px);
-    text-align: center;
-    /*margin-top: -30px;*/
-  }
-  
-  
   #content-wrapper {
     width: 100%;
     display: block;

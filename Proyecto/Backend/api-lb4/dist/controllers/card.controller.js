@@ -16,57 +16,55 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
-let ColumnController = class ColumnController {
-    constructor(columnRepository) {
-        this.columnRepository = columnRepository;
+let CardController = class CardController {
+    constructor(cardRepository) {
+        this.cardRepository = cardRepository;
     }
-    async create(column) {
-        return this.columnRepository.create(column);
+    async create(card) {
+        return this.cardRepository.create(card);
     }
     async count(where) {
-        return this.columnRepository.count(where);
+        return this.cardRepository.count(where);
     }
     async find(filter) {
-        console.log(filter);
-        return this.columnRepository.find(filter);
+        return this.cardRepository.find(filter);
     }
-    async updateAll(column, where) {
-        return this.columnRepository.updateAll(column, where);
+    async updateAll(card, where) {
+        return this.cardRepository.updateAll(card, where);
     }
     async findById(id) {
-        return this.columnRepository.findById(id);
+        return this.cardRepository.findById(id);
     }
-    async updateById(id, column) {
-        await this.columnRepository.updateById(id, column);
+    async updateById(id, card) {
+        await this.cardRepository.updateById(id, card);
     }
-    async replaceById(id, column) {
-        await this.columnRepository.replaceById(id, column);
+    async replaceById(id, card) {
+        await this.cardRepository.replaceById(id, card);
     }
     async deleteById(id) {
-        await this.columnRepository.deleteById(id);
+        await this.cardRepository.deleteById(id);
     }
-    async findColumnByBoardId(boardId) {
+    async findColumnByCardId(boardId) {
         const filter = {};
         filter.where = { boardId: { "like": boardId } };
-        filter.limit = 1;
         console.log(filter);
-        return this.columnRepository.find(filter);
+        return this.cardRepository.find(filter);
     }
 };
 __decorate([
-    rest_1.post('/column', {
+    rest_1.post('/card', {
         responses: {
             '200': {
-                description: 'Column model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Column) } },
+                description: 'Card model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Card) } },
             },
         },
     }),
     __param(0, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Column, {
-                    title: 'NewColumn',
+                schema: rest_1.getModelSchemaRef(models_1.Card, {
+                    title: 'NewCard',
                     exclude: ['_id'],
                 }),
             },
@@ -75,44 +73,44 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "create", null);
+], CardController.prototype, "create", null);
 __decorate([
-    rest_1.get('/column/count', {
+    rest_1.get('/card/count', {
         responses: {
             '200': {
-                description: 'Column model count',
+                description: 'Card model count',
                 content: { 'application/json': { schema: repository_1.CountSchema } },
             },
         },
     }),
-    __param(0, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Column))),
+    __param(0, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Card))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "count", null);
+], CardController.prototype, "count", null);
 __decorate([
-    rest_1.get('/column', {
+    rest_1.get('/card', {
         responses: {
             '200': {
-                description: 'Array of Column model instances',
+                description: 'Array of Card model instances',
                 content: {
                     'application/json': {
-                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Column) },
+                        schema: { type: 'array', items: rest_1.getModelSchemaRef(models_1.Card) },
                     },
                 },
             },
         },
     }),
-    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Column))),
+    __param(0, rest_1.param.query.object('filter', rest_1.getFilterSchemaFor(models_1.Card))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "find", null);
+], CardController.prototype, "find", null);
 __decorate([
-    rest_1.patch('/column', {
+    rest_1.patch('/card', {
         responses: {
             '200': {
-                description: 'Column PATCH success count',
+                description: 'Card PATCH success count',
                 content: { 'application/json': { schema: repository_1.CountSchema } },
             },
         },
@@ -120,21 +118,21 @@ __decorate([
     __param(0, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Column, { partial: true }),
+                schema: rest_1.getModelSchemaRef(models_1.Card, { partial: true }),
             },
         },
     })),
-    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Column))),
+    __param(1, rest_1.param.query.object('where', rest_1.getWhereSchemaFor(models_1.Card))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [models_1.Column, Object]),
+    __metadata("design:paramtypes", [models_1.Card, Object]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "updateAll", null);
+], CardController.prototype, "updateAll", null);
 __decorate([
-    rest_1.get('/column/{id}', {
+    rest_1.get('/card/{id}', {
         responses: {
             '200': {
-                description: 'Column model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Column) } },
+                description: 'Card model instance',
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Card) } },
             },
         },
     }),
@@ -142,12 +140,12 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "findById", null);
+], CardController.prototype, "findById", null);
 __decorate([
-    rest_1.patch('/column/{id}', {
+    rest_1.patch('/card/{id}', {
         responses: {
             '204': {
-                description: 'Column PATCH success',
+                description: 'Card PATCH success',
             },
         },
     }),
@@ -155,33 +153,33 @@ __decorate([
     __param(1, rest_1.requestBody({
         content: {
             'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Column, { partial: true }),
+                schema: rest_1.getModelSchemaRef(models_1.Card, { partial: true }),
             },
         },
     })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Column]),
+    __metadata("design:paramtypes", [String, models_1.Card]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "updateById", null);
+], CardController.prototype, "updateById", null);
 __decorate([
-    rest_1.put('/column/{id}', {
+    rest_1.put('/card/{id}', {
         responses: {
             '204': {
-                description: 'Column PUT success',
+                description: 'Card PUT success',
             },
         },
     }),
     __param(0, rest_1.param.path.string('id')),
     __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, models_1.Column]),
+    __metadata("design:paramtypes", [String, models_1.Card]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "replaceById", null);
+], CardController.prototype, "replaceById", null);
 __decorate([
-    rest_1.del('/column/{id}', {
+    rest_1.del('/card/{id}', {
         responses: {
             '204': {
-                description: 'Column DELETE success',
+                description: 'Card DELETE success',
             },
         },
     }),
@@ -189,13 +187,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "deleteById", null);
+], CardController.prototype, "deleteById", null);
 __decorate([
-    rest_1.get('/board/{boardId}/columns', {
+    rest_1.get('/board/{boardId}/cards', {
         responses: {
             '200': {
                 description: 'Column model instance',
-                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Column) } },
+                content: { 'application/json': { schema: rest_1.getModelSchemaRef(models_1.Card) } },
             },
         },
     }),
@@ -203,10 +201,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColumnController.prototype, "findColumnByBoardId", null);
-ColumnController = __decorate([
-    __param(0, repository_1.repository(repositories_1.ColumnRepository)),
-    __metadata("design:paramtypes", [repositories_1.ColumnRepository])
-], ColumnController);
-exports.ColumnController = ColumnController;
-//# sourceMappingURL=column.controller.js.map
+], CardController.prototype, "findColumnByCardId", null);
+CardController = __decorate([
+    __param(0, repository_1.repository(repositories_1.CardRepository)),
+    __metadata("design:paramtypes", [repositories_1.CardRepository])
+], CardController);
+exports.CardController = CardController;
+//# sourceMappingURL=card.controller.js.map

@@ -22,8 +22,9 @@ import { ColumnComponent } from './column/column.component';
 import { CardComponent } from './card/card.component';
 
 // PIPES
+import { CardWhere , CardOrder} from './card/card.pipes';
 // import { OrderBy } from './pipes/orderby.pipe';
-// import { Where } from './pipes/where.pipe';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { CardComponent } from './card/card.component';
     BoardComponent,
     CardComponent,
     ColumnComponent,
+    CardWhere,
+    CardOrder,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import {Column} from '../column/column';
 import {Card} from '../card/card';
 
+// tslint:disable: indent
+// tslint:disable: variable-name
 export class Board {
 	_id: string;
 	title: string;
